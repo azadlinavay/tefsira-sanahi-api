@@ -1,0 +1,590 @@
+openapi: 3.1.0
+info:
+  title: Tefsira Sanahi API
+  version: 1.0.0
+  summary: The Quran (Madinah Mushaf) with Tefsira Sanahi, the Kurdish (Badini) tafsir by Tehsin Ibrahim Duski — text and audio together.
+  description: |
+    A free, public, read-only JSON API. No key is needed.
+
+    * Every response is JSON, wrapped in `data` (errors have `message`).
+    * Every response carries `X-API-Version`.
+    * Public reads are limited to 120 requests/minute per IP (`429` with `Retry-After` past that) and may be cached (`Cache-Control: public`).
+    * CORS is open (`Access-Control-Allow-Origin: *`), so browsers and web apps can call it directly.
+
+    Ayah keys are `"surah:ayah"`, e.g. `"2:255"`. Al-Fatiha's basmala is its ayah 1;
+    every other surah except At-Tawbah (9) opens with an unnumbered basmala (`has_basmala`).
+  license:
+    name: MIT (code). Content rights belong to their owners — see README.
+  contact:
+    name: Tefsira Sanahi
+    url: https://github.com/azadlinavay/tefsira-sanahi-api
+servers:
+  - url: https://api.example.com/api/v1
+    description: Replace with your deployment
+  - url: http://tefsira-sanahi-api.test/api/v1
+    description: Local (Laravel Herd)
+
+tags:
+  - name: Meta
+  - name: Quran
+  - name: Reciters
+  - name: Tafsir
+  - name: Packages
+    description: Zips of a tafsir's audio + text for offline use.
+  - name: Donation
+  - name: Admin
+    description: Requires `Authorization: Bearer <TEFSIRA_ADMIN_TOKEN>`. Returns 404 when the server has no token configured.
+
+paths:
+  /:
+    get:
+      tags: [Meta]
+      summary: API name, version, counts and links
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                data:
+                  name: Tefsira Sanahi API
+                  version: 1.0.0
+                  counts: { surahs: 114, ayahs: 6236, pages: 604, tafsirs: 1, reciters: 29 }
+  /openapi.yaml:
+    get:
+      tags: [Meta]
+      summary: This document
+      responses:
+        '200': { description: OpenAPI 3.1 YAML }
+
+  /donation:
+    get:
+      tags: [Donation]
+      summary: How to support the app
+      description: Contact number and the payment methods it accepts (FIB, QI Card, FastPay, ZainCash), with a message in Kurdish, English and Arabic.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                data:
+                  phone: +964 750 760 1194
+                  phone_e164: '+9647507601194'
+                  methods:
+                    - { id: fib, name: FIB (First Iraqi Bank) }
+                    - { id: qi-card, name: QI Card }
+                    - { id: fastpay, name: FastPay }
+                    - { id: zaincash, name: ZainCash }
+                  message: { ku: '…', en: '…', ar: '…' }
+
+  /surahs:
+    get:
+      tags: [Quran]
+      summary: All 114 surahs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Surah' } }
+  /surahs/{surah}:
+    get:
+      tags: [Quran]
+      summary: A surah and its ayahs
+      parameters:
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/tafsir'
+        - $ref: '#/components/parameters/reciter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      surah: { $ref: '#/components/schemas/Surah' }
+                      ayahs: { type: array, items: { $ref: '#/components/schemas/Ayah' } }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /ayahs/{surah}/{ayah}:
+    get:
+      tags: [Quran]
+      summary: One ayah
+      parameters:
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/ayah'
+        - $ref: '#/components/parameters/tafsir'
+        - $ref: '#/components/parameters/reciter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Ayah' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /pages/{page}:
+    get:
+      tags: [Quran]
+      summary: A Madinah Mushaf page (1–604) with its 15-line layout
+      description: |
+        Layout of the King Fahd Complex Mushaf, V2 (1421H). Pages 1–2 have 8 lines, all others 15.
+        Each line is one of:
+        * `{type: surah_header, surah}` — the surah title frame
+        * `{type: basmala, surah}`
+        * `{type: ayah, words: [[surah, ayah, first, last], …]}` — runs of words; `first`/`last` are 0-based
+          indexes into the ayah's `text.hafs_smart` split on spaces (render it with the KFGQPC HafsSmart font).
+      parameters:
+        - name: page
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1, maximum: 604 }
+        - $ref: '#/components/parameters/tafsir'
+        - $ref: '#/components/parameters/reciter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                data:
+                  page: 1
+                  lines:
+                    - { type: surah_header, surah: 1 }
+                    - { type: ayah, words: [[1, 1, 0, 4]] }
+                    - { type: ayah, words: [[1, 3, 0, 2], [1, 4, 0, 3]] }
+                  ayahs: []
+        '404': { $ref: '#/components/responses/NotFound' }
+  /search:
+    get:
+      tags: [Quran]
+      summary: Search the Quran and/or a tafsir
+      description: Ignores diacritics and Arabic/Kurdish letter variants (أ/إ/آ/ا, ى/ي/ی, ة/ه, ك/ک …).
+      parameters:
+        - { name: q, in: query, required: true, schema: { type: string, minLength: 2, maxLength: 100 } }
+        - { name: in, in: query, schema: { type: string, enum: [quran, tafsir, all], default: all } }
+        - name: tafsir
+          in: query
+          description: Edition to search (default tehsin-duski-ku)
+          schema: { type: string }
+        - { name: per_page, in: query, schema: { type: integer, minimum: 1, maximum: 50, default: 20 } }
+        - { name: quran_page, in: query, schema: { type: integer, default: 1 } }
+        - { name: tafsir_page, in: query, schema: { type: integer, default: 1 } }
+      responses:
+        '200':
+          description: Two independently paginated result sets (null when not searched).
+          content:
+            application/json:
+              example:
+                data:
+                  query: الرحمن
+                  quran: { current_page: 1, data: [{ key: '1:1', page: 1, text: '…' }], total: 57 }
+                  tafsir: { current_page: 1, data: [{ key: '1:1', edition: tehsin-duski-ku, snippet: '…' }] }
+        '422': { $ref: '#/components/responses/Invalid' }
+
+  /reciters:
+    get:
+      tags: [Reciters]
+      summary: Arabic reciters (one MP3 per ayah)
+      description: '`url_template` placeholders — `{sss}` surah and `{aaa}` ayah as 3 digits, `{id}` ayah number 1–6236.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Reciter' } }
+  /reciters/{reciter}/surahs/{surah}:
+    get:
+      tags: [Reciters]
+      summary: Recitation URL of every ayah in a surah
+      parameters:
+        - { name: reciter, in: path, required: true, schema: { type: string }, example: alafasy }
+        - $ref: '#/components/parameters/surah'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                data: { reciter: alafasy, surah: 1, ayahs: [{ key: '1:1', url: 'https://everyayah.com/data/Alafasy_128kbps/001001.mp3' }] }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /tafsirs:
+    get:
+      tags: [Tafsir]
+      summary: Tafsir editions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Edition' } }
+  /tafsirs/{edition}:
+    get:
+      tags: [Tafsir]
+      summary: One edition
+      parameters: [{ $ref: '#/components/parameters/edition' }]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Edition' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /tafsirs/{edition}/surahs/{surah}:
+    get:
+      tags: [Tafsir]
+      summary: A surah's ayahs with tafsir text and audio together
+      description: '`intros` holds clips heard before the first ayah — for Al-Fatiha, the isti''adha (a''udhu billah) and its explanation.'
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/reciter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      edition: { type: string }
+                      surah: { $ref: '#/components/schemas/Surah' }
+                      intros:
+                        type: array
+                        items:
+                          allOf:
+                            - $ref: '#/components/schemas/Clip'
+                            - type: object
+                              properties: { label: { type: string } }
+                      ayahs: { type: array, items: { $ref: '#/components/schemas/Ayah' } }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /tafsirs/{edition}/ayahs/{surah}/{ayah}:
+    get:
+      tags: [Tafsir]
+      summary: One ayah with its tafsir text and audio
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/ayah'
+        - $ref: '#/components/parameters/reciter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Ayah' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /tafsirs/{edition}/packages:
+    get:
+      tags: [Packages]
+      summary: Downloadable packages
+      description: |
+        One zip per surah (`surah-001` … `surah-114`), per juz (`juz-01` … `juz-30`) and the whole tafsir (`all`).
+        Each zip contains `audio/SSS/SSSAAA.mp3` (one clip per ayah; `SSS000.mp3` is an intro),
+        `tafsir.json` (`{"1:1": {"quran": "…", "tafsir": "…"}}`) and `manifest.json` (clip list with durations).
+        Verify downloads with `sha256`.
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - { name: scope, in: query, schema: { type: string, enum: [surah, juz, all] } }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Package' } }
+  /tafsirs/{edition}/packages/{name}:
+    get:
+      tags: [Packages]
+      summary: One package
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/package'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Package' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /tafsirs/{edition}/packages/{name}/download:
+    get:
+      tags: [Packages]
+      summary: Download the zip
+      description: Streams the file, or redirects (302) to the storage URL when packages are on S3/R2.
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/package'
+      responses:
+        '200':
+          description: The zip
+          content:
+            application/zip: { schema: { type: string, format: binary } }
+        '302': { description: Redirect to the zip on cloud storage }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /admin/tafsirs/{edition}/ayahs/{surah}/{ayah}/text:
+    put:
+      tags: [Admin]
+      summary: Set (or correct) an ayah's tafsir text
+      security: [{ adminToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/ayah'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties: { text: { type: string, maxLength: 20000 } }
+      responses:
+        '200':
+          description: The updated ayah
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Ayah' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/Invalid' }
+  /admin/tafsirs/{edition}/ayahs/{surah}/{ayah}/audio:
+    post:
+      tags: [Admin]
+      summary: Upload (or replace) an ayah's tafsir audio
+      description: Use ayah `0` for an intro clip. Rebuild the affected packages afterwards.
+      security: [{ adminToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/ayah'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [audio]
+              properties:
+                audio: { type: string, format: binary, description: MP3, up to 50 MB }
+                duration_ms: { type: integer }
+      responses:
+        '201':
+          description: The ayah with its new audio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Ayah' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/Invalid' }
+    delete:
+      tags: [Admin]
+      summary: Delete an ayah's tafsir audio
+      security: [{ adminToken: [] }]
+      parameters:
+        - $ref: '#/components/parameters/edition'
+        - $ref: '#/components/parameters/surah'
+        - $ref: '#/components/parameters/ayah'
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /admin/tafsirs/{edition}/packages:
+    post:
+      tags: [Admin]
+      summary: Rebuild one surah or juz package
+      description: For the whole-tafsir package (`all`, ~1 GB) use the `tafsir:build-packages` command instead.
+      security: [{ adminToken: [] }]
+      parameters: [{ $ref: '#/components/parameters/edition' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [scope, number]
+              properties:
+                scope: { type: string, enum: [surah, juz] }
+                number: { type: integer }
+      responses:
+        '200':
+          description: The rebuilt package
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { $ref: '#/components/schemas/Package' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/Invalid' }
+
+components:
+  securitySchemes:
+    adminToken:
+      type: http
+      scheme: bearer
+  parameters:
+    surah:
+      name: surah
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1, maximum: 114 }
+    ayah:
+      name: ayah
+      in: path
+      required: true
+      schema: { type: integer, minimum: 0 }
+    edition:
+      name: edition
+      in: path
+      required: true
+      schema: { type: string }
+      example: tehsin-duski-ku
+    package:
+      name: name
+      in: path
+      required: true
+      schema: { type: string, pattern: '^(surah-\d{3}|juz-\d{2}|all)$' }
+      example: surah-001
+    tafsir:
+      name: tafsir
+      in: query
+      description: Add this edition's text and audio to each ayah
+      schema: { type: string }
+      example: tehsin-duski-ku
+    reciter:
+      name: reciter
+      in: query
+      description: Add this reciter's recitation URL to each ayah
+      schema: { type: string }
+      example: alafasy
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          example: { message: Surah must be 1–114. }
+    Unauthorized:
+      description: Missing or wrong admin token
+      content:
+        application/json:
+          example: { message: A valid admin token is required. }
+    Invalid:
+      description: Validation failed
+      content:
+        application/json:
+          example: { message: The q field must be at least 2 characters., errors: { q: ['…'] } }
+  schemas:
+    Surah:
+      type: object
+      properties:
+        number: { type: integer, example: 1 }
+        name_ar: { type: string, example: الفَاتِحة }
+        name_en: { type: string, example: Al-Fatihah }
+        revelation_place: { type: string, enum: [makkah, madinah] }
+        ayah_count: { type: integer, example: 7 }
+        pages: { type: array, items: { type: integer }, example: [1, 1], description: First and last Mushaf page }
+        juz_start: { type: integer }
+        has_basmala: { type: boolean, description: Opens with an unnumbered basmala (false for 1 and 9) }
+    Ayah:
+      type: object
+      properties:
+        id: { type: integer, description: 1–6236, example: 262 }
+        key: { type: string, example: '2:255' }
+        surah: { type: integer }
+        number: { type: integer }
+        page: { type: integer }
+        juz: { type: integer }
+        text:
+          type: object
+          properties:
+            uthmani: { type: string, description: Uthmani script with full diacritics (Tanzil) }
+            simple: { type: string, description: Imla'i script without diacritics, for search }
+            hafs_smart: { type: string, description: Glyph text for the KFGQPC HafsSmart font (Mushaf rendering) }
+        tafsir:
+          description: Present with ?tafsir= or on /tafsirs/… endpoints
+          type: object
+          properties:
+            edition: { type: string }
+            text: { type: [string, 'null'] }
+            audio: { oneOf: [{ $ref: '#/components/schemas/Clip' }, { type: 'null' }] }
+        recitation:
+          description: Present with ?reciter=
+          type: object
+          properties:
+            reciter: { type: string }
+            url: { type: string, format: uri }
+    Clip:
+      type: object
+      properties:
+        url: { type: string, format: uri }
+        duration_ms: { type: [integer, 'null'] }
+        size_bytes: { type: [integer, 'null'] }
+        needs_review: { type: boolean }
+    Reciter:
+      type: object
+      properties:
+        id: { type: string, example: alafasy }
+        name: { type: string, example: مشاري راشد العفاسي }
+        url_template: { type: string, example: 'https://everyayah.com/data/Alafasy_128kbps/{sss}{aaa}.mp3' }
+        is_default: { type: boolean }
+    Edition:
+      type: object
+      properties:
+        slug: { type: string, example: tehsin-duski-ku }
+        title: { type: string, example: تەفسیرا ساناهی }
+        author: { type: string, example: Tehsin Ibrahim Duski }
+        language: { type: string, example: ku }
+        dialect: { type: string, example: badini }
+        arabic_reciter: { type: string, description: Reciter heard in the tafsir audio }
+        has_audio: { type: boolean }
+        text_count: { type: integer }
+        clip_count: { type: integer }
+    Package:
+      type: object
+      properties:
+        name: { type: string, example: surah-001 }
+        scope: { type: string, enum: [surah, juz, all] }
+        number: { type: integer }
+        clip_count: { type: integer }
+        duration_ms: { type: integer }
+        size_bytes: { type: integer }
+        sha256: { type: string }
+        updated_at: { type: string, format: date-time }
+        download_url: { type: string, format: uri }

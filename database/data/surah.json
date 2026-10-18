@@ -1,0 +1,1026 @@
+{ "surah": [
+    {
+      "id": 1,
+      "id_juz": 1,
+      "name": "Al-Fatihah",
+      "name_arabic": " الفاتحة",
+      "name_kurdish": "فاتیحه‌",
+      "total": 7,
+      "location" :  "makkah"
+    },
+    {
+      "id": 2,
+      "id_juz": 1,
+      "name": "Al-Baqarah",
+      "name_arabic": " البقرة",
+      "name_kurdish": "Sapi",
+      "total": 286,
+      "location" :  "madina"
+    },
+    {
+      "id": 3,
+      "id_juz": 3,
+      "name": "Ali 'Imran",
+      "name_arabic": " اٰل عمران",
+      "name_kurdish": "Keluarga Imran",
+      "total": 200,
+      "location" :  "madina"
+
+    },
+    {
+      "id": 4,
+      "id_juz": 4,
+      "name": "An-Nisa'",
+      "name_arabic": " النساۤء",
+      "name_kurdish": "Wanita",
+      "total": 176,
+      "location" :  "madina"
+    },
+    {
+      "id": 5,
+      "id_juz": 6,
+      "name": "Al-Ma'idah",
+      "name_arabic": " الماۤئدة",
+      "name_kurdish": "Hidangan",
+      "total": 120,
+      "location" :  "madina"
+    },
+    {
+      "id": 6,
+      "id_juz": 7,
+      "name": "Al-An'am",
+      "name_arabic": " الانعام",
+      "name_kurdish": "Binatang Ternak",
+      "total": 165,
+      "location" :  "makkah"
+    },
+    {
+      "id": 7,
+      "id_juz": 8,
+      "name": "Al-A'raf",
+      "name_arabic": " الاعراف",
+      "name_kurdish": "Tempat Tertinggi",
+      "total": 206,
+      "location" :  "makkah"
+    },
+    {
+      "id": 8,
+      "id_juz": 9,
+      "name": "Al-Anfal",
+      "name_arabic": " الانفال",
+      "name_kurdish": "Rampasan Perang",
+      "total": 75,
+      "location" :  "madina"
+    },
+    {
+      "id": 9,
+      "id_juz": 10,
+      "name": "At-Taubah",
+      "name_arabic": " التوبة",
+      "name_kurdish": "Pengampunan",
+      "total": 129,
+      "location" :  "madina"
+    },
+    {
+      "id": 10,
+      "id_juz": 11,
+      "name": "Yunus",
+      "name_arabic": " يونس",
+      "name_kurdish": "Yunus",
+      "total": 109,
+      "location" :  "makkah"
+    },
+    {
+      "id": 11,
+      "id_juz": 11,
+      "name": "Hud",
+      "name_arabic": " هود",
+      "name_kurdish": "Hud",
+      "total": 123,
+      "location" :  "makkah"
+    },
+    {
+      "id": 12,
+      "id_juz": 12,
+      "name": "Yusuf",
+      "name_arabic": " يوسف",
+      "name_kurdish": "Yusuf",
+      "total": 111,
+      "location" :  "makkah"
+    },
+    {
+      "id": 13,
+      "id_juz": 13,
+      "name": "Ar-Ra'd",
+      "name_arabic": " الرّعد",
+      "name_kurdish": "Guruh",
+      "total": 43,
+      "location" :  "madina"
+    },
+    {
+      "id": 14,
+      "id_juz": 13,
+      "name": "Ibrahim",
+      "name_arabic": " ابرٰهيم",
+      "name_kurdish": "Ibrahim",
+      "total": 52,
+      "location" :  "makkah"
+    },
+    {
+      "id": 15,
+      "id_juz": 13,
+      "name": "Al-Hijr",
+      "name_arabic": " الحجر",
+      "name_kurdish": "Hijr",
+      "total": 99,
+      "location" :  "makkah"
+    },
+    {
+      "id": 16,
+      "id_juz": 14,
+      "name": "An-Nahl",
+      "name_arabic": " النحل",
+      "name_kurdish": "Lebah",
+      "total": 128,
+      "location" :  "makkah"
+    },
+    {
+      "id": 17,
+      "id_juz": 15,
+      "name": "Al-Isra'",
+      "name_arabic": " الاسراۤء",
+      "name_kurdish": "Memperjalankan Malam Hari",
+      "total": 111,
+      "location" :  "makkah"
+    },
+    {
+      "id": 18,
+      "id_juz": 15,
+      "name": "Al-Kahf",
+      "name_arabic": " الكهف",
+      "name_kurdish": "Goa",
+      "total": 110,"location" :  "makkah"
+    },
+    {
+      "id": 19,
+      "id_juz": 16,
+      "name": "Maryam",
+      "name_arabic": " مريم",
+      "name_kurdish": "Maryam",
+      "total": 98,
+      "location" :  "makkah"
+    },
+    {
+      "id": 20,
+      "id_juz": 16,
+      "name": "Taha",
+      "name_arabic": " طٰهٰ",
+      "name_kurdish": "Taha",
+      "total": 135,
+      "location" :  "makkah"
+    },
+    {
+      "id": 21,
+      "id_juz": 17,
+      "name": "Al-Anbiya'",
+      "name_arabic": " الانبياۤء",
+      "name_kurdish": "Para Nabi",
+      "total": 112,
+      "location" :  "makkah"
+    },
+    {
+      "id": 22,
+      "id_juz": 17,
+      "name": "Al-Hajj",
+      "name_arabic": " الحج",
+      "name_kurdish": "Haji",
+      "total": 78,
+      "location" :  "madina"
+    },
+    {
+      "id": 23,
+      "id_juz": 18,
+      "name": "Al-Mu'minun",
+      "name_arabic": " المؤمنون",
+      "name_kurdish": "Orang-Orang Mukmin",
+      "total": 118,
+      "location" :  "makkah"
+    },
+    {
+      "id": 24,
+      "id_juz": 18,
+      "name": "An-Nur",
+      "name_arabic": " النّور",
+      "name_kurdish": "Cahaya",
+      "total": 64,
+      "location" :  "madina"
+    },
+    {
+      "id": 25,
+      "id_juz": 18,
+      "name": "Al-Furqan",
+      "name_arabic": " الفرقان",
+      "name_kurdish": "Pembeda",
+      "total": 77,
+      "location" :  "makkah"
+    },
+    {
+      "id": 26,
+      "id_juz": 19,
+      "name": "Asy-Syu'ara'",
+      "name_arabic": " الشعراۤء",
+      "name_kurdish": "Para Penyair",
+      "total": 227,
+      "location" :  "makkah"
+    },
+    {
+      "id": 27,
+      "id_juz": 19,
+      "name": "An-Naml",
+      "name_arabic": " النمل",
+      "name_kurdish": "Semut-semut",
+      "total": 93,
+      "location" :  "makkah"
+    },
+    {
+      "id": 28,
+      "id_juz": 20,
+      "name": "Al-Qasas",
+      "name_arabic": " القصص",
+      "name_kurdish": "Kisah-Kisah",
+      "total": 88,
+      "location" :  "makkah"
+    },
+    {
+      "id": 29,
+      "id_juz": 20,
+      "name": "Al-'Ankabut",
+      "name_arabic": " العنكبوت",
+      "name_kurdish": "Laba-Laba",
+      "total": 69,
+      "location" :  "makkah"
+    },
+    {
+      "id": 30,
+      "id_juz": 21,
+      "name": "Ar-Rum",
+      "name_arabic": " الرّوم",
+      "name_kurdish": "Romawi",
+      "total": 60,
+      "location" :  "makkah"
+    },
+    {
+      "id": 31,
+      "id_juz": 21,
+      "name": "Luqman",
+      "name_arabic": " لقمٰن",
+      "name_kurdish": "Luqman",
+      "total": 34,
+      "location" :  "makkah"
+    },
+    {
+      "id": 32,
+      "id_juz": 21,
+      "name": "As-Sajdah",
+      "name_arabic": " السّجدة",
+      "name_kurdish": "Sajdah",
+      "total": 30,
+      "location" :  "makkah"
+    },
+    {
+      "id": 33,
+      "id_juz": 21,
+      "name": "Al-Ahzab",
+      "name_arabic": " الاحزاب",
+      "name_kurdish": "Golongan Yang Bersekutu",
+      "total": 73,
+      "location" :  "madina"
+    },
+    {
+      "id": 34,
+      "id_juz": 22,
+      "name": "Saba'",
+      "name_arabic": " سبأ",
+      "name_kurdish": "Saba'",
+      "total": 54,
+      "location" :  "makkah"
+    },
+    {
+      "id": 35,
+      "id_juz": 22,
+      "name": "Fatir",
+      "name_arabic": " فاطر",
+      "name_kurdish": "Maha Pencipta",
+      "total": 45,
+      "location" :  "makkah"
+    },
+    {
+      "id": 36,
+      "id_juz": 22,
+      "name": "Yasin",
+      "name_arabic": " يٰسۤ",
+      "name_kurdish": "Yasin",
+      "total": 83,
+      "location" :  "makkah"
+    },
+    {
+      "id": 37,
+      "id_juz": 23,
+      "name": "As-Saffat",
+      "name_arabic": " الصّٰۤفّٰت",
+      "name_kurdish": "Barisan-Barisan",
+      "total": 182,
+      "location" :  "makkah"
+    },
+    {
+      "id": 38,
+      "id_juz": 23,
+      "name": "Sad",
+      "name_arabic": " ص",
+      "name_kurdish": "Sad",
+      "total": 88,
+      "location" :  "makkah"
+    },
+    {
+      "id": 39,
+      "id_juz": 23,
+      "name": "Az-Zumar",
+      "name_arabic": " الزمر",
+      "name_kurdish": "Rombongan",
+      "total": 75,"location" :  "makkah"
+    },
+    {
+      "id": 40,
+      "id_juz": 24,
+      "name": "Gafir",
+      "name_arabic": " غافر",
+      "name_kurdish": "Maha Pengampun",
+      "total": 85,
+      "location" :  "makkah"
+    },
+    {
+      "id": 41,
+      "id_juz": 24,
+      "name": "Fussilat",
+      "name_arabic": " فصّلت",
+      "name_kurdish": "Yang Dijelaskan",
+      "total": 54,
+      "location" :  "makkah"
+    },
+    {
+      "id": 42,
+      "id_juz": 25,
+      "name": "Asy-Syura",
+      "name_arabic": " الشورى",
+      "name_kurdish": "Musyawarah",
+      "total": 53,"location" :  "makkah"
+    },
+    {
+      "id": 43,
+      "id_juz": 25,
+      "name": "Az-Zukhruf",
+      "name_arabic": " الزخرف",
+      "name_kurdish": "Perhiasan",
+      "total": 89,"location" :  "makkah"
+    },
+    {
+      "id": 44,
+      "id_juz": 25,
+      "name": "Ad-Dukhan",
+      "name_arabic": " الدخان",
+      "name_kurdish": "Kabut",
+      "total": 59,
+      "location" :  "makkah"
+    },
+    {
+      "id": 45,
+      "id_juz": 25,
+      "name": "Al-Jasiyah",
+      "name_arabic": " الجاثية",
+      "name_kurdish": "Berlutut",
+      "total": 37,
+      "location" :  "makkah"
+    },
+    {
+      "id": 46,
+      "id_juz": 26,
+      "name": "Al-Ahqaf",
+      "name_arabic": " الاحقاف",
+      "name_kurdish": "Bukit Pasir",
+      "total": 35,
+      "location" :  "makkah"
+    },
+    {
+      "id": 47,
+      "id_juz": 26,
+      "name": "Muhammad",
+      "name_arabic": " محمّد",
+      "name_kurdish": "Muhammad",
+      "total": 38,
+      "location" :  "madina"
+    },
+    {
+      "id": 48,
+      "id_juz": 26,
+      "name": "Al-Fath",
+      "name_arabic": " الفتح",
+      "name_kurdish": "Kemenangan",
+      "total": 29,
+      "location" :  "madina"
+    },
+    {
+      "id": 49,
+      "id_juz": 26,
+      "name": "Al-Hujurat",
+      "name_arabic": " الحجرٰت",
+      "name_kurdish": "Kamar-Kamar",
+      "total": 18,
+      "location" :  "madina"
+    },
+    {
+      "id": 50,
+      "id_juz": 26,
+      "name": "Qaf",
+      "name_arabic": " ق",
+      "name_kurdish": "Qaf",
+      "total": 45,
+      "location" :  "makkah"
+    },
+    {
+      "id": 51,
+      "id_juz": 26,
+      "name": "Az-Zariyat",
+      "name_arabic": " الذّٰريٰت",
+      "name_kurdish": "Angin yang Menerbangkan",
+      "total": 60,
+      "location" :  "makkah"
+    },
+    {
+      "id": 52,
+      "id_juz": 27,
+      "name": "At-Tur",
+      "name_arabic": " الطور",
+      "name_kurdish": "Bukit Tursina",
+      "total": 49,
+      "location" :  "makkah"
+    },
+    {
+      "id": 53,
+      "id_juz": 27,
+      "name": "An-Najm",
+      "name_arabic": " النجم",
+      "name_kurdish": "Bintang",
+      "total": 62,
+      "location" :  "makkah"
+    },
+    {
+      "id": 54,
+      "id_juz": 27,
+      "name": "Al-Qamar",
+      "name_arabic": " القمر",
+      "name_kurdish": "Bulan",
+      "total": 55,
+      "location" :  "makkah"
+    },
+    {
+      "id": 55,
+      "id_juz": 27,
+      "name": "Ar-Rahman",
+      "name_arabic": " الرحمن",
+      "name_kurdish": "Maha Pengasih",
+      "total": 78,
+      "location" :  "madina"
+    },
+    {
+      "id": 56,
+      "id_juz": 27,
+      "name": "Al-Waqi'ah",
+      "name_arabic": " الواقعة",
+      "name_kurdish": "Hari Kiamat",
+      "total": 96,
+      "location" :  "makkah"
+    },
+    {
+      "id": 57,
+      "id_juz": 27,
+      "name": "Al-Hadid",
+      "name_arabic": " الحديد",
+      "name_kurdish": "Besi",
+      "total": 29,
+      "location" :  "madina"
+    },
+    {
+      "id": 58,
+      "id_juz": 28,
+      "name": "Al-Mujadalah",
+      "name_arabic": " المجادلة",
+      "name_kurdish": "Gugatan",
+      "total": 22,
+      "location" :  "madina"
+    },
+    {
+      "id": 59,
+      "id_juz": 28,
+      "name": "Al-Hasyr",
+      "name_arabic": " الحشر",
+      "name_kurdish": "Pengusiran",
+      "total": 24,
+      "location" :  "madina"
+    },
+    {
+      "id": 60,
+      "id_juz": 28,
+      "name": "Al-Mumtahanah",
+      "name_arabic": " الممتحنة",
+      "name_kurdish": "Wanita Yang Diuji",
+      "total": 13,
+      "location" :  "madina"
+    },
+    {
+      "id": 61,
+      "id_juz": 28,
+      "name": "As-Saff",
+      "name_arabic": " الصّفّ",
+      "name_kurdish": "Barisan",
+      "total": 14,
+      "location" :  "madina"
+    },
+    {
+      "id": 62,
+      "id_juz": 28,
+      "name": "Al-Jumu'ah",
+      "name_arabic": " الجمعة",
+      "name_kurdish": "Jumat",
+      "total": 11,
+      "location" :  "madina"
+    },
+    {
+      "id": 63,
+      "id_juz": 28,
+      "name": "Al-Munafiqun",
+      "name_arabic": " المنٰفقون",
+      "name_kurdish": "Orang-Orang Munafik",
+      "total": 11,
+      "location" :  "madina"
+    },
+    {
+      "id": 64,
+      "id_juz": 28,
+      "name": "At-Tagabun",
+      "name_arabic": " التغابن",
+      "name_kurdish": "Pengungkapan Kesalahan",
+      "total": 18,
+      "location" :  "madina"
+    },
+    {
+      "id": 65,
+      "id_juz": 28,
+      "name": "At-Talaq",
+      "name_arabic": " الطلاق",
+      "name_kurdish": "Talak",
+      "total": 12,
+      "location" :  "madina"
+    },
+    {
+      "id": 66,
+      "id_juz": 28,
+      "name": "At-Tahrim",
+      "name_arabic": " التحريم",
+      "name_kurdish": "Pengharaman",
+      "total": 12,
+      "location" :  "madina"
+    },
+    {
+      "id": 67,
+      "id_juz": 29,
+      "name": "Al-Mulk",
+      "name_arabic": " الملك",
+      "name_kurdish": "Kerajaan",
+      "total": 30,
+      "location" :  "makkah"
+    },
+    {
+      "id": 68,
+      "id_juz": 29,
+      "name": "Al-Qalam",
+      "name_arabic": " القلم",
+      "name_kurdish": "Pena",
+      "total": 52,
+      "location" :  "makkah"
+    },
+    {
+      "id": 69,
+      "id_juz": 29,
+      "name": "Al-Haqqah",
+      "name_arabic": " الحاۤقّة",
+      "name_kurdish": "Hari Kiamat",
+      "total": 52,
+      "location" :  "makkah"
+    },
+    {
+      "id": 70,
+      "id_juz": 29,
+      "name": "Al-Ma'arij",
+      "name_arabic": " المعارج",
+      "name_kurdish": "Tempat Naik",
+      "total": 44,
+      "location" :  "makkah"
+    },
+    {
+      "id": 71,
+      "id_juz": 29,
+      "name": "Nuh",
+      "name_arabic": " نوح",
+      "name_kurdish": "Nuh",
+      "total": 28,
+      "location" :  "makkah"
+    },
+    {
+      "id": 72,
+      "id_juz": 29,
+      "name": "Al-Jinn",
+      "name_arabic": " الجن",
+      "name_kurdish": "Jin",
+      "total": 28,
+      "location" :  "makkah"
+    },
+    {
+      "id": 73,
+      "id_juz": 29,
+      "name": "Al-Muzzammil",
+      "name_arabic": " المزّمّل",
+      "name_kurdish": "Orang Yang Berselimut",
+      "total": 20,
+      "location" :  "makkah"
+    },
+    {
+      "id": 74,
+      "id_juz": 29,
+      "name": "Al-Muddassir",
+      "name_arabic": " المدّثّر",
+      "name_kurdish": "Orang Yang Berkemul",
+      "total": 56,
+      "location" :  "makkah"
+    },
+    {
+      "id": 75,
+      "id_juz": 29,
+      "name": "Al-Qiyamah",
+      "name_arabic": " القیامة",
+      "name_kurdish": "Hari Kiamat",
+      "total": 40,
+      "location" :  "makkah"
+    },
+    {
+      "id": 76,
+      "id_juz": 29,
+      "name": "Al-Insan",
+      "name_arabic": " الانسان",
+      "name_kurdish": "Manusia",
+      "total": 31,
+      "location" :  "madina"
+    },
+    {
+      "id": 77,
+      "id_juz": 29,
+      "name": "Al-Mursalat",
+      "name_arabic": " المرسلٰت",
+      "name_kurdish": "Malaikat Yang Diutus",
+      "total": 50,
+      "location" :  "makkah"
+    },
+    {
+      "id": 78,
+      "id_juz": 30,
+      "name": "An-Naba'",
+      "name_arabic": " النبأ",
+      "name_kurdish": "Berita Besar",
+      "total": 40,
+      "location" :  "makkah"
+    },
+    {
+      "id": 79,
+      "id_juz": 30,
+      "name": "An-Nazi'at",
+      "name_arabic": " النّٰزعٰت",
+      "name_kurdish": "Malaikat Yang Mencabut",
+      "total": 46,
+      "location" :  "makkah"
+    },
+    {
+      "id": 80,
+      "id_juz": 30,
+      "name": "'Abasa",
+      "name_arabic": " عبس",
+      "name_kurdish": "Bermuka Masam",
+      "total": 42,
+      "location" :  "makkah"
+    },
+    {
+      "id": 81,
+      "id_juz": 30,
+      "name": "At-Takwir",
+      "name_arabic": " التكوير",
+      "name_kurdish": "Penggulungan",
+      "total": 29,
+      "location" :  "makkah"
+    },
+    {
+      "id": 82,
+      "id_juz": 30,
+      "name": "Al-Infitar",
+      "name_arabic": " الانفطار",
+      "name_kurdish": "Terbelah",
+      "total": 19,
+      "location" :  "makkah"
+    },
+    {
+      "id": 83,
+      "id_juz": 30,
+      "name": "Al-Mutaffifin",
+      "name_arabic": " المطفّفين",
+      "name_kurdish": "Orang-Orang Curang",
+      "total": 36,
+      "location" :  "makkah"
+    },
+    {
+      "id": 84,
+      "id_juz": 30,
+      "name": "Al-Insyiqaq",
+      "name_arabic": " الانشقاق",
+      "name_kurdish": "Terbelah",
+      "total": 25,
+      "location" :  "makkah"
+    },
+    {
+      "id": 85,
+      "id_juz": 30,
+      "name": "Al-Buruj",
+      "name_arabic": " البروج",
+      "name_kurdish": "Gugusan Bintang",
+      "total": 22,
+      "location" :  "makkah"
+    },
+    {
+      "id": 86,
+      "id_juz": 30,
+      "name": "At-Tariq",
+      "name_arabic": " الطارق",
+      "name_kurdish": "Yang Datang Di Malam Hari",
+      "total": 17,
+      "location" :  "makkah"
+    },
+    {
+      "id": 87,
+      "id_juz": 30,
+      "name": "Al-A'la",
+      "name_arabic": " الاعلى",
+      "name_kurdish": "Maha Tinggi",
+      "total": 19,
+      "location" :  "makkah"
+    },
+    {
+      "id": 88,
+      "id_juz": 30,
+      "name": "Al-Gasyiyah",
+      "name_arabic": " الغاشية",
+      "name_kurdish": "Hari Kiamat",
+      "total": 26,
+      "location" :  "makkah"
+    },
+    {
+      "id": 89,
+      "id_juz": 30,
+      "name": "Al-Fajr",
+      "name_arabic": " الفجر",
+      "name_kurdish": "Fajar",
+      "total": 30,
+      "location" :  "makkah"
+    },
+    {
+      "id": 90,
+      "id_juz": 30,
+      "name": "Al-Balad",
+      "name_arabic": " البلد",
+      "name_kurdish": "Negeri",
+      "total": 20,
+      "location" :  "makkah"
+    },
+    {
+      "id": 91,
+      "id_juz": 30,
+      "name": "Asy-Syams",
+      "name_arabic": " الشمس",
+      "name_kurdish": "Matahari",
+      "total": 15,
+      "location" :  "makkah"
+    },
+    {
+      "id": 92,
+      "id_juz": 30,
+      "name": "Al-Lail",
+      "name_arabic": " الّيل",
+      "name_kurdish": "Malam",
+      "total": 21,
+      "location" :  "makkah"
+    },
+    {
+      "id": 93,
+      "id_juz": 30,
+      "name": "Ad-Duha",
+      "name_arabic": " الضحى",
+      "name_kurdish": "Duha",
+      "total": 11,
+      "location" :  "makkah"
+    },
+    {
+      "id": 94,
+      "id_juz": 30,
+      "name": "Asy-Syarh",
+      "name_arabic": " الشرح",
+      "name_kurdish": "Lapang",
+      "total": 8,
+      "location" :  "makkah"
+    },
+    {
+      "id": 95,
+      "id_juz": 30,
+      "name": "At-Tin",
+      "name_arabic": " التين",
+      "name_kurdish": "Buah Tin",
+      "total": 8,
+      "location" :  "makkah"
+    },
+    {
+      "id": 96,
+      "id_juz": 30,
+      "name": "Al-'Alaq",
+      "name_arabic": " العلق",
+      "name_kurdish": "Segumpal Darah",
+      "total": 19,
+      "location" :  "makkah"
+    },
+    {
+      "id": 97,
+      "id_juz": 30,
+      "name": "Al-Qadr",
+      "name_arabic": " القدر",
+      "name_kurdish": "Kemuliaan",
+      "total": 5,
+      "location" :  "makkah"
+    },
+    {
+      "id": 98,
+      "id_juz": 30,
+      "name": "Al-Bayyinah",
+      "name_arabic": " البيّنة",
+      "name_kurdish": "Bukti Nyata",
+      "total": 8,
+      "location" :  "madina"
+    },
+    {
+      "id": 99,
+      "id_juz": 30,
+      "name": "Az-Zalzalah",
+      "name_arabic": " الزلزلة",
+      "name_kurdish": "Guncangan",
+      "total": 8,
+      "location" :  "madina"
+    },
+    {
+      "id": 100,
+      "id_juz": 30,
+      "name": "Al-'Adiyat",
+      "name_arabic": " العٰديٰت",
+      "name_kurdish": "Kuda Yang Berlari Kencang",
+      "total": 11,
+      "location" :  "makkah"
+    },
+    {
+      "id": 101,
+      "id_juz": 30,
+      "name": "Al-Qari'ah",
+      "name_arabic": " القارعة",
+      "name_kurdish": "Hari Kiamat",
+      "total": 11,
+      "location" :  "makkah"
+    },
+    {
+      "id": 102,
+      "id_juz": 30,
+      "name": "At-Takasur",
+      "name_arabic": " التكاثر",
+      "name_kurdish": "Bermegah-Megahan",
+      "total": 8,
+      "location" :  "makkah"
+    },
+    {
+      "id": 103,
+      "id_juz": 30,
+      "name": "Al-'Asr",
+      "name_arabic": " العصر",
+      "name_kurdish": "Asar",
+      "total": 3,
+      "location" :  "makkah"
+    },
+    {
+      "id": 104,
+      "id_juz": 30,
+      "name": "Al-Humazah",
+      "name_arabic": " الهمزة",
+      "name_kurdish": "Pengumpat",
+      "total": 9,
+      "location" :  "makkah"
+    },
+    {
+      "id": 105,
+      "id_juz": 30,
+      "name": "Al-Fil",
+      "name_arabic": " الفيل",
+      "name_kurdish": "Gajah",
+      "total": 5,
+      "location" :  "makkah"
+    },
+    {
+      "id": 106,
+      "id_juz": 30,
+      "name": "Quraisy",
+      "name_arabic": " قريش",
+      "name_kurdish": "Quraisy",
+      "total": 4,
+      "location" :  "makkah"
+    },
+    {
+      "id": 107,
+      "id_juz": 30,
+      "name": "Al-Ma'un",
+      "name_arabic": " الماعون",
+      "name_kurdish": "Barang Yang Berguna",
+      "total": 7,
+      "location" :  "makkah"
+    },
+    {
+      "id": 108,
+      "id_juz": 30,
+      "name": "Al-Kausar",
+      "name_arabic": " الكوثر",
+      "name_kurdish": "Pemberian Yang Banyak",
+      "total": 3,
+      "location" :  "makkah"
+    },
+    {
+      "id": 109,
+      "id_juz": 30,
+      "name": "Al-Kafirun",
+      "name_arabic": " الكٰفرون",
+      "name_kurdish": "Orang-Orang kafir",
+      "total": 6,
+      "location" :  "makkah"
+    },
+    {
+      "id": 110,
+      "id_juz": 30,
+      "name": "An-Nasr",
+      "name_arabic": " النصر",
+      "name_kurdish": "Pertolongan",
+      "total": 3,
+      "location" :  "madina"
+    },
+    {
+      "id": 111,
+      "id_juz": 30,
+      "name": "Al-Masad",
+      "name_arabic": " المسد",
+      "name_kurdish": "Api Yang Bergejolak",
+      "total": 5,
+      "location" :  "makkah"
+    },
+    {
+      "id": 112,
+      "id_juz": 30,
+      "name": "Al-Ikhlas",
+      "name_arabic": " الاخلاص",
+      "name_kurdish": "Ikhlas",
+      "total": 4,
+      "location" :  "makkah"
+    },
+    {
+      "id": 113,
+      "id_juz": 30,
+      "name": "Al-Falaq",
+      "name_arabic": " الفلق",
+      "name_kurdish": "Subuh",
+      "total": 5,
+      "location" :  "makkah"
+    },
+    {
+      "id": 114,
+      "id_juz": 30,
+      "name": "An-Nas",
+      "name_arabic": " الناس",
+      "name_kurdish": "Manusia",
+      "total": 6,
+      "location" :  "makkah"
+    }
+  ]
+}
