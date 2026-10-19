@@ -27,13 +27,16 @@ class PageController extends ApiController
         $lines = array_map(fn ($l) => match ($l['t']) {
             'h' => ['type' => 'surah_header', 'surah' => $l['s']],
             'b' => ['type' => 'basmala', 'surah' => $l['s']],
-            default => ['type' => 'ayah', 'words' => $l['w']],
+            // em: natural width in em of the HafsSmart font (justify full
+            // lines, centre short ones against ref_em).
+            default => ['type' => 'ayah', 'words' => $l['w'], 'em' => $l['em'] ?? null],
         }, $layout[$page]['l']);
 
         $ayahs = Ayah::where('page', $page)->orderBy('id')->get();
 
         return response()->json(['data' => [
             'page' => $page,
+            'ref_em' => 18.88,
             'lines' => $lines,
             'ayahs' => Presenter::ayahs($ayahs, $this->editionFrom($request), $this->reciterFrom($request)),
         ]]);

@@ -20,3 +20,12 @@ Route::get('/docs', fn () => view('docs', [
     'github' => config('tefsira.github'),
     'rateLimit' => config('tefsira.rate_limit'),
 ]));
+
+// The web app uses real paths (/surah/2/255, /page/42…). Nginx serves its
+// files; any other non-API path gets the web app's index.html so links work.
+Route::fallback(function () {
+    $index = public_path('index.html');
+    abort_if(request()->is('api/*') || ! is_file($index), 404);
+
+    return response()->file($index, ['Cache-Control' => 'no-cache']);
+});

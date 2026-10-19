@@ -31,6 +31,14 @@ class LinkWebApp extends Command
             return self::SUCCESS;
         }
 
+        // Drop links left by an older build whose files are gone.
+        foreach (scandir(public_path()) as $name) {
+            $path = public_path($name);
+            if (is_link($path) && str_starts_with((string) readlink($path), $dir) && ! file_exists($path)) {
+                unlink($path);
+            }
+        }
+
         $linked = 0;
         foreach (scandir($dir) as $name) {
             if ($name === '.' || $name === '..' || in_array($name, self::KEEP, true)) {

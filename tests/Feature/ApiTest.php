@@ -39,6 +39,13 @@ class ApiTest extends TestCase
             ->assertJsonPath('data.links.docs', url('/docs'));
     }
 
+    public function test_unknown_api_paths_stay_json_404s(): void
+    {
+        $this->getJson('/api/v1/nope')->assertNotFound()->assertJsonStructure(['message']);
+        // No web build in tests: other paths 404 instead of serving index.html.
+        $this->get('/surah/2/255')->assertNotFound();
+    }
+
     public function test_surahs_list_and_basmala_rule(): void
     {
         $this->getJson('/api/v1/surahs')
