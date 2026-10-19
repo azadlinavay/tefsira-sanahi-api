@@ -26,6 +26,19 @@ class ApiTest extends TestCase
             ->assertJsonPath('data.counts.tafsirs', 1);
     }
 
+    public function test_docs_page_and_index_link_the_website(): void
+    {
+        $this->get('/docs')
+            ->assertOk()
+            ->assertSee('Tefsira Sanahi API')
+            ->assertSee(url('/api/v1/openapi.yaml'), false)
+            ->assertSee('https://tafsirasanahi.com', false);
+
+        $this->getJson('/api/v1')
+            ->assertJsonPath('data.website', 'https://tafsirasanahi.com')
+            ->assertJsonPath('data.links.docs', url('/docs'));
+    }
+
     public function test_surahs_list_and_basmala_rule(): void
     {
         $this->getJson('/api/v1/surahs')

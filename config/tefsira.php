@@ -8,6 +8,12 @@ return [
     'version' => '1.0.0',
 
     /*
+    | The Tefsira Sanahi website (the web app) and the source code.
+    */
+    'website' => env('TEFSIRA_WEBSITE', 'https://tafsirasanahi.com'),
+    'github' => 'https://github.com/azadlinavay/tefsira-sanahi-api',
+
+    /*
     | Bearer token for the admin endpoints (uploading or correcting tafsir
     | text and audio). Leave empty to turn the admin endpoints off.
     */
@@ -33,6 +39,7 @@ return [
     */
     'donation' => [
         'phone' => '+964 750 760 1194',
+        'website' => env('TEFSIRA_WEBSITE', 'https://tafsirasanahi.com'),
         'phone_e164' => '+9647507601194',
         'methods' => [
             ['id' => 'fib', 'name' => 'FIB (First Iraqi Bank)'],

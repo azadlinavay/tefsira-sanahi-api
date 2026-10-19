@@ -23,7 +23,9 @@ class MetaController extends ApiController
                 'reciters' => Reciter::where('is_active', true)->count(),
             ],
             'mushaf' => 'Madinah Mushaf, KFGQPC V2 (1421H), 604 pages × 15 lines',
+            'website' => config('tefsira.website'),
             'links' => [
+                'docs' => url('/docs'),
                 'surahs' => url('/api/v1/surahs'),
                 'tafsirs' => url('/api/v1/tafsirs'),
                 'reciters' => url('/api/v1/reciters'),

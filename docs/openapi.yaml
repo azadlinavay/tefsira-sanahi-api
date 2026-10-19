@@ -17,10 +17,13 @@ info:
     name: MIT (code). Content rights belong to their owners — see README.
   contact:
     name: Tefsira Sanahi
-    url: https://github.com/azadlinavay/tefsira-sanahi-api
+    url: https://tafsirasanahi.com
+externalDocs:
+  description: Guide, examples and self-hosting (GitHub)
+  url: https://github.com/azadlinavay/tefsira-sanahi-api#readme
 servers:
-  - url: https://api.example.com/api/v1
-    description: Replace with your deployment
+  - url: https://tafsirasanahi.com/api/v1
+    description: Tefsira Sanahi (live)
   - url: http://tefsira-sanahi-api.test/api/v1
     description: Local (Laravel Herd)
 
@@ -33,7 +36,7 @@ tags:
     description: Zips of a tafsir's audio + text for offline use.
   - name: Donation
   - name: Admin
-    description: Requires `Authorization: Bearer <TEFSIRA_ADMIN_TOKEN>`. Returns 404 when the server has no token configured.
+    description: 'Requires `Authorization: Bearer <TEFSIRA_ADMIN_TOKEN>`. Returns 404 when the server has no token configured.'
 
 paths:
   /:

@@ -11,6 +11,8 @@ A free, public JSON API for the Holy Quran (Madinah Mushaf) together with **Tefs
 
 **API version 1.0.0** (for the Tefsira Sanahi app 2.0.0) · Laravel 13 · PHP 8.4 · MIT-licensed code (see [Licensing](#licensing))
 
+
+> **Live:** website [tafsirasanahi.com](https://tafsirasanahi.com) · API `https://tafsirasanahi.com/api/v1` · interactive docs [tafsirasanahi.com/docs](https://tafsirasanahi.com/docs)
 ---
 
 ## Contents
@@ -37,12 +39,12 @@ There's no API key or sign-up. All routes live under `/api/v1`.
 
 ```bash
 # Al-Ikhlas: Quran text + Kurdish tafsir text + tafsir audio + Alafasy recitation
-curl "https://YOUR-API/api/v1/surahs/112?tafsir=tehsin-duski-ku&reciter=alafasy"
+curl "https://tafsirasanahi.com/api/v1/surahs/112?tafsir=tehsin-duski-ku&reciter=alafasy"
 ```
 
 ```js
 // JavaScript (browser or Node). CORS is open.
-const res = await fetch('https://YOUR-API/api/v1/tafsirs/tehsin-duski-ku/ayahs/2/255')
+const res = await fetch('https://tafsirasanahi.com/api/v1/tafsirs/tehsin-duski-ku/ayahs/2/255')
 const { data } = await res.json()
 console.log(data.text.uthmani, data.tafsir.text)
 new Audio(data.tafsir.audio.url).play()
@@ -50,12 +52,12 @@ new Audio(data.tafsir.audio.url).play()
 
 ```dart
 // Flutter / Dart
-final res = await http.get(Uri.parse('https://YOUR-API/api/v1/tafsirs/tehsin-duski-ku/surahs/1'));
+final res = await http.get(Uri.parse('https://tafsirasanahi.com/api/v1/tafsirs/tehsin-duski-ku/surahs/1'));
 final data = jsonDecode(res.body)['data'];
 // data['intros'] = a'udhu billah clip, data['ayahs'][i]['tafsir'] = { text, audio: { url, duration_ms } }
 ```
 
-The full machine-readable reference is in [`docs/openapi.yaml`](docs/openapi.yaml) and is also served at `GET /api/v1/openapi.yaml`. You can paste it into [Swagger Editor](https://editor.swagger.io), Postman or Insomnia.
+**Interactive documentation:** [tafsirasanahi.com/docs](https://tafsirasanahi.com/docs) has a quick start and the full reference, and you can try every endpoint from that page. The machine-readable spec is [`docs/openapi.yaml`](docs/openapi.yaml), also served at `GET /api/v1/openapi.yaml`. You can paste it into [Swagger Editor](https://editor.swagger.io), Postman or Insomnia.
 
 **Conventions**
 
@@ -315,7 +317,7 @@ All admin routes require `Authorization: Bearer <TEFSIRA_ADMIN_TOKEN>`. If the t
 Use ayah `0` for an intro clip, such as the a'udhu billah before Al-Fatiha.
 
 ```bash
-curl -X POST https://YOUR-API/api/v1/admin/tafsirs/tehsin-duski-ku/ayahs/2/255/audio \
+curl -X POST https://tafsirasanahi.com/api/v1/admin/tafsirs/tehsin-duski-ku/ayahs/2/255/audio \
   -H "Authorization: Bearer $TOKEN" -F audio=@002255.mp3
 ```
 
