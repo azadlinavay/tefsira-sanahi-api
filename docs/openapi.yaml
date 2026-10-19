@@ -17,12 +17,12 @@ info:
     name: MIT (code). Content rights belong to their owners — see README.
   contact:
     name: Tefsira Sanahi
-    url: https://tafsirasanahi.com
+    url: https://tefsirasanahi.com
 externalDocs:
   description: Guide, examples and self-hosting (GitHub)
   url: https://github.com/azadlinavay/tefsira-sanahi-api#readme
 servers:
-  - url: https://tafsirasanahi.com/api/v1
+  - url: https://tefsirasanahi.com/api/v1
     description: Tefsira Sanahi (live)
   - url: http://tefsira-sanahi-api.test/api/v1
     description: Local (Laravel Herd)

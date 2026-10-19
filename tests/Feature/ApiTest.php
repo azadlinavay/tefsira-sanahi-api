@@ -32,10 +32,10 @@ class ApiTest extends TestCase
             ->assertOk()
             ->assertSee('Tefsira Sanahi API')
             ->assertSee(url('/api/v1/openapi.yaml'), false)
-            ->assertSee('https://tafsirasanahi.com', false);
+            ->assertSee('https://tefsirasanahi.com', false);
 
         $this->getJson('/api/v1')
-            ->assertJsonPath('data.website', 'https://tafsirasanahi.com')
+            ->assertJsonPath('data.website', 'https://tefsirasanahi.com')
             ->assertJsonPath('data.links.docs', url('/docs'));
     }
 

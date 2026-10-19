@@ -10,7 +10,7 @@ return [
     /*
     | The Tefsira Sanahi website (the web app) and the source code.
     */
-    'website' => env('TEFSIRA_WEBSITE', 'https://tafsirasanahi.com'),
+    'website' => env('TEFSIRA_WEBSITE', 'https://tefsirasanahi.com'),
     'github' => 'https://github.com/azadlinavay/tefsira-sanahi-api',
 
     /*
@@ -39,7 +39,7 @@ return [
     */
     'donation' => [
         'phone' => '+964 750 760 1194',
-        'website' => env('TEFSIRA_WEBSITE', 'https://tafsirasanahi.com'),
+        'website' => env('TEFSIRA_WEBSITE', 'https://tefsirasanahi.com'),
         'phone_e164' => '+9647507601194',
         'methods' => [
             ['id' => 'fib', 'name' => 'FIB (First Iraqi Bank)'],
