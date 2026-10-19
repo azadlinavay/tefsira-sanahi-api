@@ -38,7 +38,9 @@ class WebAppController extends Controller
     /** @return array{title: string, description: string, path: string, body: string, crumbs?: array, status?: int} */
     private function page(string $path): array
     {
-        if (preg_match('#^surah/(\d{1,3})(?:/(\d{1,3}))?$#', $path, $m)) {
+        // /tafsir/… (tafsir-only reading) shares the surah page's text; its
+        // canonical link points to /surah/….
+        if (preg_match('#^(?:surah|tafsir)/(\d{1,3})(?:/(\d{1,3}))?$#', $path, $m)) {
             $surah = Surah::find((int) $m[1]);
             if ($surah && isset($m[2])) {
                 $ayah = Ayah::where('surah_id', $surah->id)->where('number', (int) $m[2])->first();
