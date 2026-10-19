@@ -14,6 +14,12 @@ return [
     'github' => 'https://github.com/azadlinavay/tefsira-sanahi-api',
 
     /*
+    | Folder holding the Flutter web build. When set, `php artisan
+    | tefsira:link-web` (run on every deploy) serves it at the site root.
+    */
+    'web_dir' => env('TEFSIRA_WEB_DIR'),
+
+    /*
     | Bearer token for the admin endpoints (uploading or correcting tafsir
     | text and audio). Leave empty to turn the admin endpoints off.
     */
