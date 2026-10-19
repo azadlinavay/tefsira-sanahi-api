@@ -2,7 +2,7 @@
 
 A free, public JSON API for the Holy Quran (Madinah Mushaf) together with **Tefsira Sanahi**, the Kurdish (Badini) tafsir by **Tehsin Ibrahim Duski**. You get the text and the audio side by side, and anyone can use them in their own apps and websites.
 
-- **Quran:** 114 surahs, 6,236 ayahs, the 604-page Madinah Mushaf layout (KFGQPC V2, 1421H, 15 lines per page) and search that ignores diacritics.
+- **Quran:** 114 surahs, 6,236 ayahs, the 604-page Madinah Mushaf layout (KFGQPC V2, 1421H, 15 lines per page) and advanced search that ignores diacritics: every word, exact phrase or any word, `"quoted"` phrases, `-excluded` words, surah and juz filters, ranked results.
 - **Tafsir:** the full Kurdish text of every ayah plus an audio clip for every ayah (6,237 clips, ~926 MB).
 - **Offline packages:** zip downloads per surah, per juz or for the whole tafsir (MP3 + text + manifest), with SHA-256 checksums.
 - **Reciters:** 29 Arabic reciters with per-ayah recitation URLs. You add more by editing a JSON file.
@@ -78,7 +78,7 @@ final data = jsonDecode(res.body)['data'];
 | GET | `/api/v1/surahs/{surah}` | A surah's ayahs. Add `?tafsir=` and/or `?reciter=` |
 | GET | `/api/v1/ayahs/{surah}/{ayah}` | One ayah. Takes the same options |
 | GET | `/api/v1/pages/{page}` | A Mushaf page (1–604): its 15-line layout + ayahs |
-| GET | `/api/v1/search?q=` | Search the Quran and/or tafsir (`in=quran\|tafsir\|all`) |
+| GET | `/api/v1/search?q=` | Search the Quran and/or tafsir (`in=quran\|tafsir\|all`, `mode=all\|any\|phrase`, `surah=`, `juz=`) |
 | GET | `/api/v1/reciters` | Arabic reciters and their URL templates |
 | GET | `/api/v1/reciters/{id}/surahs/{surah}` | Recitation URL of every ayah in a surah |
 | GET | `/api/v1/tafsirs` | Tafsir editions |
@@ -363,6 +363,7 @@ Project layout:
 app/Http/Controllers/Api/   endpoints
 app/Support/Presenter.php   JSON shapes
 app/Support/ArabicText.php  search normalisation (Arabic + Kurdish letters, diacritics)
+app/Http/Controllers/WebAppController.php  web app pages with per-page SEO tags and text
 app/Console/Commands/       tafsir:import-audio, tafsir:build-packages
 config/tefsira.php          version, admin token, disks, rate limit, donation details
 database/data/              source data (Quran, tafsir text, layout, reciters, audio manifest)
