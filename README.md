@@ -25,6 +25,7 @@ A free, public JSON API for the Holy Quran (Madinah Mushaf) together with **Tefs
 - [Run it yourself (Laravel Herd)](#run-it-yourself-laravel-herd)
 - [Importing the audio](#importing-the-audio)
 - [Deploying (Laravel Forge + Cloudflare R2)](#deploying-laravel-forge--cloudflare-r2)
+- [Website and API on one domain](#website-and-api-on-one-domain)
 - [Dashboard](#dashboard)
 - [Admin API](#admin-api)
 - [Adding a reciter or another tafsir](#adding-a-reciter-or-another-tafsir)
@@ -282,6 +283,27 @@ location /storage/ {
     add_header Cache-Control "public, max-age=2592000, immutable";
 }
 ```
+
+## Website and API on one domain
+
+[tefsirasanahi.com](https://tefsirasanahi.com) serves everything from this one Laravel site:
+
+| Path | What |
+| --- | --- |
+| `/` | the Tefsira Sanahi web app (Flutter web build) |
+| `/api/v1` | this API |
+| `/docs` | interactive API documentation |
+| `/storage/…` | tafsir audio and download packages |
+
+How it works: the web build lives in its own folder on the server, outside Laravel's releases, so API deploys never touch it. `TEFSIRA_WEB_DIR` in `.env` points at that folder (`/home/forge/tefsirasanahi-web` on Forge). On every deploy, `php artisan tefsira:link-web` runs from composer's `post-autoload-dump` and symlinks the build into `public/`. Nginx then serves those files directly, `/` resolves to the web app's `index.html`, and everything else still reaches Laravel. No Nginx changes are needed.
+
+**Publishing a new web version** (from the app repo, on a PC with SSH access to the server):
+
+```bash
+powershell -File tool/deploy_web.ps1
+```
+
+That builds the web app, uploads it into a fresh folder and swaps it in. The links point at the folder's path, so they keep working and there's nothing to redeploy. The web app calls the API with relative paths (`/api/v1`, `/storage/…`), so it works on whatever domain serves it.
 
 ## Dashboard
 
