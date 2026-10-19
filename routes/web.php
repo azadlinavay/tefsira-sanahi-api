@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebAppController;
 use Illuminate\Support\Facades\Route;
 
 // The API lives under /api/v1. On the live site the web app is served at "/"
@@ -22,10 +23,6 @@ Route::get('/docs', fn () => view('docs', [
 ]));
 
 // The web app uses real paths (/surah/2/255, /page/42…). Nginx serves its
-// files; any other non-API path gets the web app's index.html so links work.
-Route::fallback(function () {
-    $index = public_path('index.html');
-    abort_if(request()->is('api/*') || ! is_file($index), 404);
-
-    return response()->file($index, ['Cache-Control' => 'no-cache']);
-});
+// files; any other non-API path gets the web app's index.html, with that
+// page's title, description and text filled in for search engines.
+Route::fallback(WebAppController::class);

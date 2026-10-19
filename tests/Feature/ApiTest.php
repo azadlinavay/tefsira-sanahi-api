@@ -100,6 +100,51 @@ class ApiTest extends TestCase
         $this->getJson('/api/v1/search?q=a')->assertUnprocessable();
     }
 
+    public function test_advanced_search_modes_and_filters(): void
+    {
+        // Every word, in any order, ranked with the exact phrase first.
+        $all = $this->getJson('/api/v1/search?in=quran&q='.urlencode('الرحيم الرحمن'))->assertOk();
+        $this->assertGreaterThanOrEqual(2, $all->json('data.quran.total'));
+
+        // Any word finds more than every word.
+        $any = $this->getJson('/api/v1/search?in=quran&mode=any&q='.urlencode('الرحيم الرحمن'))->assertOk();
+        $this->assertGreaterThan($all->json('data.quran.total'), $any->json('data.quran.total'));
+
+        // Limit to one surah.
+        $this->getJson('/api/v1/search?in=quran&surah=1&q='.urlencode('الرحمن'))
+            ->assertOk()
+            ->assertJsonPath('data.quran.total', 2);
+
+        // Excluded words.
+        $this->getJson('/api/v1/search?in=quran&surah=1&q='.urlencode('الرحمن -بسم'))
+            ->assertOk()
+            ->assertJsonPath('data.quran.total', 1)
+            ->assertJsonPath('data.quran.data.0.key', '1:3');
+
+        // Tafsir results carry a page for the reader and the words to highlight.
+        $t = $this->getJson('/api/v1/search?in=tafsir&juz=30&q='.urlencode('خودێ'))->assertOk();
+        $this->assertNotNull($t->json('data.tafsir.data.0.page'));
+        $this->assertSame(['خودێ'], $t->json('data.words'));
+    }
+
+    public function test_web_app_pages_carry_their_own_seo_tags(): void
+    {
+        $index = public_path('index.html');
+        $this->assertFileDoesNotExist($index);
+        file_put_contents($index, '<html><head><title>x</title><meta name="description" content="x" /><link rel="canonical" href="x" /></head><body><div id="root"></div></body></html>');
+        try {
+            $this->get('/surah/2/255')
+                ->assertOk()
+                ->assertSee('<link rel="canonical" href="https://tefsirasanahi.com/surah/2/255"', false)
+                ->assertSee('ئایەت ٢٥٥', false)
+                ->assertSee('application/ld+json', false);
+            $this->get('/page/604')->assertOk()->assertSee('لاپەر ٦٠٤', false);
+            $this->get('/surah/115')->assertNotFound()->assertSee('noindex', false);
+        } finally {
+            unlink($index);
+        }
+    }
+
     public function test_reciters_and_donation(): void
     {
         $this->getJson('/api/v1/reciters')->assertOk()->assertJsonPath('data.0.is_default', true);

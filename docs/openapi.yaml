@@ -171,10 +171,24 @@ paths:
     get:
       tags: [Quran]
       summary: Search the Quran and/or a tafsir
-      description: Ignores diacritics and Arabic/Kurdish letter variants (أ/إ/آ/ا, ى/ي/ی, ة/ه, ك/ک …).
+      description: >-
+        Ignores diacritics and Arabic/Kurdish letter variants (أ/إ/آ/ا, ى/ي/ی, ة/ه, ك/ک …).
+        By default every word must appear, in any order. Put words in "quotes" to find them together,
+        and write -word to leave out results that contain it. Results are ranked: the whole query
+        as written first, then by how many words match, then in Mushaf order.
       parameters:
-        - { name: q, in: query, required: true, schema: { type: string, minLength: 2, maxLength: 100 } }
+        - name: q
+          in: query
+          required: true
+          description: 'Words to find, e.g. `الرحمن الرحيم`, `"رب العالمين"` or `صبر -صلاة`.'
+          schema: { type: string, minLength: 2, maxLength: 200 }
+        - name: mode
+          in: query
+          description: '`all` every word · `any` at least one word · `phrase` the whole query, in order'
+          schema: { type: string, enum: [all, any, phrase], default: all }
         - { name: in, in: query, schema: { type: string, enum: [quran, tafsir, all], default: all } }
+        - { name: surah, in: query, description: Only this surah, schema: { type: integer, minimum: 1, maximum: 114 } }
+        - { name: juz, in: query, description: Only this juz, schema: { type: integer, minimum: 1, maximum: 30 } }
         - name: tafsir
           in: query
           description: Edition to search (default tehsin-duski-ku)
@@ -190,8 +204,10 @@ paths:
               example:
                 data:
                   query: الرحمن
-                  quran: { current_page: 1, data: [{ key: '1:1', page: 1, text: '…' }], total: 57 }
-                  tafsir: { current_page: 1, data: [{ key: '1:1', edition: tehsin-duski-ku, snippet: '…' }] }
+                  mode: all
+                  words: [الرحمن]
+                  quran: { current_page: 1, data: [{ key: '1:1', page: 1, juz: 1, text: '…' }], total: 57 }
+                  tafsir: { current_page: 1, data: [{ key: '1:1', page: 1, edition: tehsin-duski-ku, snippet: '…' }] }
         '422': { $ref: '#/components/responses/Invalid' }
 
   /reciters:
