@@ -1,0 +1,151 @@
+{
+  "_comment": "Per-ayah recitations. url placeholders: {sss} surah, {aaa} ayah (3 digits), {id} ayah number in the whole Quran (1-6236). Add a reciter by adding an entry.",
+  "default": "alafasy",
+  "reciters": [
+    {
+      "id": "alafasy",
+      "name": "مشاري راشد العفاسي",
+      "url": "https://everyayah.com/data/Alafasy_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "abdulbasit-murattal",
+      "name": "عبد الباسط عبد الصمد · مرتل",
+      "url": "https://everyayah.com/data/Abdul_Basit_Murattal_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "abdulbasit-mujawwad",
+      "name": "عبد الباسط عبد الصمد · مجوّد",
+      "url": "https://everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "ghamdi",
+      "name": "سعد الغامدي",
+      "url": "https://everyayah.com/data/Ghamadi_40kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "husary",
+      "name": "محمود خليل الحصري",
+      "url": "https://everyayah.com/data/Husary_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "minshawi-murattal",
+      "name": "محمد صديق المنشاوي · مرتل",
+      "url": "https://everyayah.com/data/Minshawy_Murattal_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "minshawi-mujawwad",
+      "name": "محمد صديق المنشاوي · مجوّد",
+      "url": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "sudais",
+      "name": "عبد الرحمن السديس",
+      "url": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "shuraim",
+      "name": "سعود الشريم",
+      "url": "https://everyayah.com/data/Saood_ash-Shuraym_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "maher",
+      "name": "ماهر المعيقلي",
+      "url": "https://everyayah.com/data/Maher_AlMuaiqly_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "dossary",
+      "name": "ياسر الدوسري",
+      "url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "hudhaify",
+      "name": "علي الحذيفي",
+      "url": "https://everyayah.com/data/Hudhaify_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "ayyoub",
+      "name": "محمد أيوب",
+      "url": "https://everyayah.com/data/Muhammad_Ayyoub_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "qatami",
+      "name": "ناصر القطامي",
+      "url": "https://everyayah.com/data/Nasser_Alqatami_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "ajamy",
+      "name": "أحمد بن علي العجمي",
+      "url": "https://everyayah.com/data/Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "shatri",
+      "name": "أبو بكر الشاطري",
+      "url": "https://everyayah.com/data/Abu_Bakr_Ash-Shaatree_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "rifai",
+      "name": "هاني الرفاعي",
+      "url": "https://everyayah.com/data/Hani_Rifai_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "jibreel",
+      "name": "محمد جبريل",
+      "url": "https://everyayah.com/data/Muhammad_Jibreel_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "basfar",
+      "name": "عبد الله بصفر",
+      "url": "https://everyayah.com/data/Abdullah_Basfar_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "ali-jaber",
+      "name": "علي جابر",
+      "url": "https://everyayah.com/data/Ali_Jaber_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "fares-abbad",
+      "name": "فارس عباد",
+      "url": "https://everyayah.com/data/Fares_Abbad_64kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "tablawi",
+      "name": "محمد محمود الطبلاوي",
+      "url": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "budair",
+      "name": "صلاح البدير",
+      "url": "https://everyayah.com/data/Salah_Al_Budair_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "muhsin-qasim",
+      "name": "محسن القاسم",
+      "url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "juhany",
+      "name": "عبد الله عواد الجهني",
+      "url": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "qahtani",
+      "name": "خالد القحطاني",
+      "url": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "mustafa-ismail",
+      "name": "مصطفى إسماعيل",
+      "url": "https://everyayah.com/data/Mustafa_Ismail_48kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "banna",
+      "name": "محمود علي البنا",
+      "url": "https://everyayah.com/data/Mahmoud_Ali_Al_Banna_32kbps/{sss}{aaa}.mp3"
+    },
+    {
+      "id": "bukhatir",
+      "name": "صلاح بو خاطر",
+      "url": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/{sss}{aaa}.mp3"
+    }
+  ]
+}
