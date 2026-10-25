@@ -57,6 +57,7 @@ class WebAppController extends Controller
         return match ($path) {
             'quran' => $this->simple('quran', 'قورئانا پیروز — هەمی سوورەت دگەل تەفسیرا ساناهی', 'هەمی ١١٤ سوورەتێن قورئانێ دگەل تەفسیرا ساناهی ب کوردی: مسحەفا مەدینێ، تەفسیر بتنێ، دەنگ، لێگەریان و نیشانکری.'),
             'listen' => $this->simple('listen', 'گوهداریا قورئان و تەفسیرێ', 'گوهداریا قورئانا پیروز و تەفسیرا ساناهی یا دەنگی ب کوردی بکە: قورئان و تەفسیر، قورئان بتنێ یان تەفسیر بتنێ — سورەتەک، جوزئەک یان ژ ئایەتەکێ، دگەل دەمژمێرا خەوێ.'),
+            'privacy' => $this->simple('privacy', 'سیاسەتا تایبەتمەندیێ · Privacy policy', 'Tefsira Sanahi needs no account, collects no personal data, has no ads or tracking; settings stay on your device.'),
             'search' => $this->simple('search', 'لێگەریان د قورئان و تەفسیرێ دا', 'لێگەریان د قورئانا پیروز (ب عەرەبیا سادە) و د تەفسیرا ساناهی ب کوردی دا.'),
             'about' => $this->simple('about', 'دەربارەی تەفسیرا ساناهی', 'تەفسیرا ساناهی: قورئانا پیروز دگەل تەفسیرا تەحسین ئیبراهیم دۆسکی ب کوردی (بادینی)، نڤیسین و دەنگ.'),
             'support' => $this->simple('support', 'پشتەڤانیا تەفسیرا ساناهی بکە', 'پشتەڤانیا ئەپلیکەیشن و ماڵپەڕا تەفسیرا ساناهی بکە: FIB · QI Card · FastPay · ZainCash.'),

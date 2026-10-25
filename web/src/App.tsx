@@ -18,6 +18,7 @@ const Info = () => import('./pages/InfoScreens')
 const BookmarksScreen = lazy(() => Info().then((m) => ({ default: m.BookmarksScreen })))
 const SettingsScreen = lazy(() => Info().then((m) => ({ default: m.SettingsScreen })))
 const AboutScreen = lazy(() => Info().then((m) => ({ default: m.AboutScreen })))
+const PrivacyScreen = lazy(() => Info().then((m) => ({ default: m.PrivacyScreen })))
 const SupportScreen = lazy(() => Info().then((m) => ({ default: m.SupportScreen })))
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } })
@@ -63,6 +64,7 @@ function Shell() {
           <Route path="/bookmarks" element={<BookmarksScreen />} />
           <Route path="/settings" element={<SettingsScreen />} />
           <Route path="/about" element={<AboutScreen />} />
+          <Route path="/privacy" element={<PrivacyScreen />} />
           <Route path="/support" element={<SupportScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

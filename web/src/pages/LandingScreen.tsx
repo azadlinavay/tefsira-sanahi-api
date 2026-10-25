@@ -172,7 +172,7 @@ export default function LandingScreen() {
 
       <footer className="l-footer">
         <div>
-          <Link to="/quran">قورئان</Link> · <Link to="/search">لێگەریان</Link> · <Link to="/about">دەربارەی مە</Link> · <Link to="/support">پشتەڤانی</Link> · <a href="/docs">API</a> ·{' '}
+          <Link to="/quran">قورئان</Link> · <Link to="/search">لێگەریان</Link> · <Link to="/about">دەربارەی مە</Link> · <Link to="/support">پشتەڤانی</Link> · <Link to="/privacy">Privacy</Link> · <a href="/docs">API</a> ·{' '}
           <a href="https://github.com/azadlinavay/tefsira-sanahi-api">GitHub</a>
         </div>
         <small>

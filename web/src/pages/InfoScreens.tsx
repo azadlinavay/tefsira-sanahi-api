@@ -199,6 +199,58 @@ export function SettingsScreen() {
   )
 }
 
+// ── Privacy ──────────────────────────────────────────────────────────
+const PRIVACY: [string, string, string][] = [
+  [
+    'کورتی',
+    'تەفسیرا ساناهی (ماڵپەڕ و ئەپلیکەیشنا ئەندرۆید، ئایفۆن و ویندۆزێ) چ هژمار (account) ناخوازیت، و چ زانیاریێن کەسی کۆم ناکەت و نافرۆشیت. چ ڕیکلام و چ ئامرازێن شوێنکەفتنێ (analytics / tracking) تێدا نینن.',
+    'Tefsira Sanahi (the website and the Android, iPhone and Windows apps) needs no account and does not collect, sell or share personal data. It has no ads and no analytics or tracking.',
+  ],
+  [
+    'ل سەر ئامیرێ تە',
+    'ڕێکخستن، نیشانکری، دویماهیک لاپەر و دەنگێن داگرتی تنێ ل سەر ئامیرێ تە (یان گەڕۆکێ تە) دهێنە پاراستن و ناچنە چ جهەکێ دی.',
+    'Settings, bookmarks, your last position and downloaded audio are stored only on your device (or in your browser) and are not sent anywhere.',
+  ],
+  [
+    'ئینتەرنێت',
+    'بۆ نڤیسینا تەفسیرێ، لێگەریانێ و دەنگان، ئەپ پەیوەندیێ ب ماڵپەڕێ مە (tefsirasanahi.com) و ب EveryAyah.com (دەنگێ قاریان) و Quran.com (واتا و دەنگێ پەیڤ ب پەیڤ) دکەت. وەکی هەمی ماڵپەڕان، سێرڤەر دبیت بۆ دەمەکێ کورت ناڤنیشانا IP و دەمێ داخوازێ بۆ پاراستن و چارەسەرکرنا کێشەیان بپارێزیت.',
+    'To show tafsir text, search and play audio, the app connects to our server (tefsirasanahi.com), to EveryAyah.com (recitations) and to Quran.com (word-by-word meanings and word audio). As with any website, servers may briefly keep standard request logs (such as IP address and time) for security and troubleshooting.',
+  ],
+  [
+    'پشتەڤانی',
+    'پشتەڤانی ب ڕێکا FIB، QI Card، FastPay یان ZainCash ل دەرڤەی ئەپی دهێتە کرن؛ ئەم چ زانیاریێن پارەدانێ نابینین و ناپارێزین.',
+    'Donations are made outside the app through FIB, QI Card, FastPay or ZainCash; we do not see or store any payment details.',
+  ],
+  [
+    'زارۆک',
+    'ئەپ بۆ هەمی ژیان گونجایە و چ زانیاریان ژ زارۆکان کۆم ناکەت.',
+    'The app is suitable for all ages and collects no information from children.',
+  ],
+  [
+    'پەیوەندی',
+    'بۆ هەر پرسیارەکێ دەربارەی ڤێ سیاسەتێ: azadlinavay.dev. ئەگەر ئەڤ سیاسەتە هاتە گوهۆڕین، ل ڤێ لاپەرێ دێ هێتە نووکرن.',
+    'Questions about this policy: azadlinavay.dev. Any change to this policy will be published on this page.',
+  ],
+]
+
+export function PrivacyScreen() {
+  return (
+    <Page title="سیاسەتا تایبەتمەندیێ · Privacy">
+      {PRIVACY.map(([title, ku, en]) => (
+        <Section key={title} title={title}>
+          <div className="prose">
+            <p style={{ margin: '0 0 8px' }}>{ku}</p>
+            <p dir="ltr" className="muted" style={{ margin: 0, textAlign: 'left' }}>
+              {en}
+            </p>
+          </div>
+        </Section>
+      ))}
+      <p className="hint">ل دویماهیێ هاتە نووکرن: ٢٥ / ١٠ / ٢٠٢٦ · Last updated 25 October 2026</p>
+    </Page>
+  )
+}
+
 // ── About ────────────────────────────────────────────────────────────
 const NOTE =
   'سوپاس بوو وی خودای یێ ب دەستویریا وی هەمی کار بدوماهی دهێن. ژبەرکو تەفسیرا بساناهی د سیستەمێ IOS دا نەیا بەردەست بوو، من ب فەر زانی ب کارێ بەرهەڤکرنا وێ ڕاببم داکو تێگەهشتنا مە بو پەرتوکا خۆدێ بەرفرەهتر لێ بهێت. ئەڤ بەرهەمە ژ لایێ چەند خێرخوازان ڤە هاتیە پالپشتی کرن بوو هەردو سیستەمێت ئای ئو ئێس و ئەندروێد. دخوازم وانان ژ دوعایێت خۆ بێ بەهر نەکەین. سوپاس بوو هەڤالێن هاریکاری پێشکێش کری و خودان خێر ببن. دیسان سوپاس بوو ئامەد تەحسین دوسکی بو هاریکاریا وی دگەل من دا . ب هێڤیا وێ چەندێ ژ خۆدێ، مە هەمیان بهێلتە د گزیرتێن خێران دا.'

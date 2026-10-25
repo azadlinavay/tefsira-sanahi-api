@@ -52,7 +52,7 @@ for f in (app / "fonts" / "v1").glob("*.ttf"):
 # every Mushaf page. The server fills each one with its own title and text.
 site = "https://tefsirasanahi.com"
 today = datetime.date.today().isoformat()
-urls = [(f"{site}/", "1.0"), (f"{site}/quran", "0.9"), (f"{site}/listen", "0.8"), (f"{site}/search", "0.6"), (f"{site}/about", "0.5"), (f"{site}/support", "0.7")]
+urls = [(f"{site}/", "1.0"), (f"{site}/quran", "0.9"), (f"{site}/listen", "0.8"), (f"{site}/search", "0.6"), (f"{site}/about", "0.5"), (f"{site}/support", "0.7"), (f"{site}/privacy", "0.3")]
 urls += [(f"{site}/surah/{n}", "0.9") for n in range(1, 115)]
 urls += [(f"{site}/surah/{r['sura_no']}/{r['aya_no']}", "0.7") for r in rows]
 urls += [(f"{site}/page/{n}", "0.5") for n in range(1, 605)]
