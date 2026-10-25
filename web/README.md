@@ -36,7 +36,7 @@ It's built with React, TypeScript and Vite. Tafsir text, audio, search and donat
 
 ```bash
 npm install
-python tool/build_data.py ../tefsira_sanahi   # Mushaf layouts, words, Tajweed, fonts and sitemap from the app repo
+python tool/build_data.py ../../tefsira_sanahi  # Mushaf layouts, words, Tajweed, fonts and sitemap from the app repo
 python tool/build_wbw.py                      # word-by-word meanings (from the quran.com API)
 npm run dev                                   # http://localhost:5173
 ```

@@ -1,7 +1,7 @@
 {
   "name": "tefsira-sanahi-api",
   "private": true,
-  "description": "API-only: there are no frontend assets. This file lets hosting deploy scripts that run `npm ci && npm run build` (e.g. Laravel Forge's default) succeed. The React dashboard lives in dashboard/ with its own package.json.",
+  "description": "The Laravel API needs no frontend build. This file lets hosting deploy scripts that run `npm ci && npm run build` (e.g. Laravel Forge's default) succeed. The website (React) lives in web/ and the dashboard in dashboard/, each with its own package.json; the website is published with web/tool/deploy.ps1.",
   "scripts": {
     "build": "echo \"API only: no frontend assets to build\""
   }
