@@ -35,6 +35,7 @@ tags:
   - name: Packages
     description: Zips of a tafsir's audio + text for offline use.
   - name: Donation
+  - name: Feedback
   - name: Admin
     description: 'Requires `Authorization: Bearer <TEFSIRA_ADMIN_TOKEN>`. Returns 404 when the server has no token configured.'
 
@@ -80,6 +81,36 @@ paths:
                     - { id: fastpay, name: FastPay }
                     - { id: zaincash, name: ZainCash }
                   message: { ku: '…', en: '…', ar: '…' }
+
+  /feedback:
+    post:
+      tags: [Feedback]
+      summary: Send feedback, a problem report or a review
+      description: From the website or an app. Limited to 5 a minute per sender. `contact` is optional and only stored when the sender gives it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [kind, message, platform]
+              properties:
+                kind: { type: string, enum: [problem, tafsir, suggestion, review, other] }
+                message: { type: string, minLength: 3, maxLength: 5000 }
+                rating: { type: integer, minimum: 1, maximum: 5, description: For reviews }
+                contact: { type: string, maxLength: 190, description: Email or phone, if the sender wants an answer }
+                ayah_key: { type: string, example: '18:23', description: When it is about one ayah }
+                platform: { type: string, enum: [web, android, ios, windows] }
+                app_version: { type: string, maxLength: 40 }
+                page: { type: string, maxLength: 255, description: Where it was sent from }
+      responses:
+        '201':
+          description: Received
+          content:
+            application/json:
+              example: { data: { id: 12, received: true } }
+        '422': { $ref: '#/components/responses/Invalid' }
+        '429': { description: Too many messages; try again in a minute }
 
   /surahs:
     get:
@@ -472,6 +503,46 @@ paths:
                   data: { $ref: '#/components/schemas/Package' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '422': { $ref: '#/components/responses/Invalid' }
+
+  /admin/feedback:
+    get:
+      tags: [Admin]
+      summary: Read feedback, newest first (50 a page)
+      security: [{ adminToken: [] }]
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [new, seen, done] } }
+        - { name: kind, in: query, schema: { type: string, enum: [problem, tafsir, suggestion, review, other] } }
+        - { name: page, in: query, schema: { type: integer, minimum: 1 } }
+      responses:
+        '200': { description: 'data: the messages; meta: total, page, last_page and counts per status' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /admin/feedback/{id}:
+    patch:
+      tags: [Admin]
+      summary: Mark feedback seen or done, or add a note
+      security: [{ adminToken: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [new, seen, done] }
+                note: { type: string, maxLength: 5000 }
+      responses:
+        '200': { description: The updated message }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    delete:
+      tags: [Admin]
+      summary: Delete feedback
+      security: [{ adminToken: [] }]
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '204': { description: Deleted }
+        '401': { $ref: '#/components/responses/Unauthorized' }
 
 components:
   securitySchemes:

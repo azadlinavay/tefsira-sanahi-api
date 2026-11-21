@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { audioDuration, createApi } from './api.js'
+import { FeedbackInbox } from './Feedback.jsx'
 
 const STORE_KEY = 'tefsira-dashboard'
 
@@ -31,6 +32,7 @@ export default function App() {
   const [surahs, setSurahs] = useState([])
   const [editions, setEditions] = useState([])
   const [current, setCurrent] = useState(1)
+  const [view, setView] = useState('tafsir')
   const [connError, setConnError] = useState(null)
   const [toast, setToast] = useState(null)
 
@@ -73,6 +75,10 @@ export default function App() {
             <div className="brand-sub">Dashboard {info ? `· API ${info.version}` : ''}</div>
           </div>
         </div>
+        <nav className="views" aria-label="Sections">
+          <button aria-pressed={view === 'tafsir'} onClick={() => setView('tafsir')}>Tafsir</button>
+          <button aria-pressed={view === 'feedback'} onClick={() => setView('feedback')}>Feedback</button>
+        </nav>
         <Connection settings={settings} editions={editions} onChange={updateSettings} />
       </header>
 
@@ -82,6 +88,18 @@ export default function App() {
           <p>{connError}</p>
           <p className="muted">Check the API address above. When running locally with Herd it is usually <code>http://tefsira-sanahi-api.test</code>.</p>
         </div>
+      ) : view === 'feedback' ? (
+        <main className="main">
+          <FeedbackInbox
+            api={api}
+            canEdit={Boolean(settings.token)}
+            notify={notify}
+            onOpenAyah={(key) => {
+              setCurrent(Number(key.split(':')[0]) || 1)
+              setView('tafsir')
+            }}
+          />
+        </main>
       ) : (
         <div className="layout">
           <SurahList surahs={surahs} current={current} onPick={setCurrent} />

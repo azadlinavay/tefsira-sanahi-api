@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AudioPackageController;
+use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\MetaController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\QuranController;
@@ -41,8 +42,14 @@ Route::prefix('v1')->group(function () {
     Route::get('tafsirs/{edition}/packages/{name}', [AudioPackageController::class, 'show']);
     Route::get('tafsirs/{edition}/packages/{name}/download', [AudioPackageController::class, 'download']);
 
+    // Feedback from the website and the apps (a few a minute per person).
+    Route::post('feedback', [FeedbackController::class, 'store'])->middleware('throttle:5,1');
+
     // Admin (Authorization: Bearer TEFSIRA_ADMIN_TOKEN)
     Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::get('feedback', [FeedbackController::class, 'index']);
+        Route::patch('feedback/{feedback}', [FeedbackController::class, 'update'])->whereNumber('feedback');
+        Route::delete('feedback/{feedback}', [FeedbackController::class, 'destroy'])->whereNumber('feedback');
         Route::put('tafsirs/{edition}/ayahs/{surah}/{ayah}/text', [AdminController::class, 'updateText'])->whereNumber(['surah', 'ayah']);
         Route::post('tafsirs/{edition}/ayahs/{surah}/{ayah}/audio', [AdminController::class, 'uploadAudio'])->whereNumber(['surah', 'ayah']);
         Route::delete('tafsirs/{edition}/ayahs/{surah}/{ayah}/audio', [AdminController::class, 'deleteAudio'])->whereNumber(['surah', 'ayah']);

@@ -312,7 +312,8 @@ That builds the web app, uploads it into a fresh folder and swaps it in. The lin
 - browse surahs and read the Quran text, the tafsir and the audio for each ayah;
 - correct tafsir text;
 - upload, replace or delete MP3 clips;
-- rebuild a surah's download package.
+- rebuild a surah's download package;
+- read **feedback** sent from the website and the apps (problems, tafsir mistakes, suggestions, reviews), mark it seen or done, add a note.
 
 It is a separate static app, so Laravel stays API-only.
 

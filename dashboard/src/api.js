@@ -11,7 +11,7 @@ export class ApiError extends Error {
 export function createApi({ baseUrl, token }) {
   const root = baseUrl.replace(/\/+$/, '') + '/api/v1'
 
-  async function request(method, path, { json, form } = {}) {
+  async function request(method, path, { json, form, raw } = {}) {
     const headers = { Accept: 'application/json' }
     if (token) headers.Authorization = `Bearer ${token}`
     let body
@@ -31,7 +31,7 @@ export function createApi({ baseUrl, token }) {
         : data.message || `HTTP ${res.status}`
       throw new ApiError(res.status, msg, data.errors)
     }
-    return data.data
+    return raw ? data : data.data
   }
 
   const ayahPath = (edition, s, a) => `/admin/tafsirs/${edition}/ayahs/${s}/${a}`
@@ -51,6 +51,9 @@ export function createApi({ baseUrl, token }) {
     },
     deleteAudio: (edition, s, a) => request('DELETE', `${ayahPath(edition, s, a)}/audio`),
     buildPackage: (edition, scope, number) => request('POST', `/admin/tafsirs/${edition}/packages`, { json: { scope, number } }),
+    feedback: (status, page = 1) => request('GET', `/admin/feedback?page=${page}${status ? `&status=${status}` : ''}`, { raw: true }),
+    updateFeedback: (id, patch) => request('PATCH', `/admin/feedback/${id}`, { json: patch }),
+    deleteFeedback: (id) => request('DELETE', `/admin/feedback/${id}`),
   }
 }
 
