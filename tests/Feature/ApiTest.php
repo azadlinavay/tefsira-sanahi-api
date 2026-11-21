@@ -141,6 +141,7 @@ class ApiTest extends TestCase
             $this->get('/page/604')->assertOk()->assertSee('لاپەر ٦٠٤', false);
             $this->get('/tafsir/1')->assertOk()->assertSee('<link rel="canonical" href="https://tefsirasanahi.com/surah/1"', false);
             $this->get('/quran')->assertOk()->assertSee('<link rel="canonical" href="https://tefsirasanahi.com/quran"', false);
+            $this->get('/feedback')->assertOk()->assertSee('<link rel="canonical" href="https://tefsirasanahi.com/feedback"', false);
             $this->get('/surah/115')->assertNotFound()->assertSee('noindex', false);
         } finally {
             unlink($index);
